@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import routes from "../navigation/routes";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#cc2b5e", "#753a88"]}>
       <Text>Welcome Screen</Text>
       <Button
         title="Go to Login"
@@ -14,7 +15,7 @@ const WelcomeScreen = ({ navigation }) => {
         title="Go to Register"
         onPress={() => navigation.navigate(routes.REGISTER)}
       ></Button>
-    </View>
+    </LinearGradient>
   );
 };
 

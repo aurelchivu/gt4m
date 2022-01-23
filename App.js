@@ -7,7 +7,7 @@ import AuthNavigator from "./navigation/AuthNavigator";
 function App() {
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
