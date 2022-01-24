@@ -101,8 +101,8 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <LinearGradient style={styles.container} colors={["#cc2b5e", "#753a88"]}>
-      <StatusBar backgroundColor="#cc2b5e" barStyle="light-content" />
+    <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
+      <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
       <Animated.View
         style={styles.header}
         entering={BounceInRight.duration(2500)}
@@ -203,7 +203,7 @@ const LoginScreen = ({ navigation }) => {
         )}
 
         <TouchableOpacity>
-          <Text style={{ color: "#cc2b5e", marginTop: 15 }}>
+          <Text style={{ color: "#087ee1", marginTop: 15 }}>
             Forgot password?
           </Text>
         </TouchableOpacity>
@@ -215,7 +215,7 @@ const LoginScreen = ({ navigation }) => {
             }}
           >
             <LinearGradient
-              colors={["#cc2b5e", "#753a88"]}
+              colors={["#087ee1", "#087ee1"]}
               style={styles.signIn}
             >
               <Text
@@ -236,7 +236,7 @@ const LoginScreen = ({ navigation }) => {
             style={[
               styles.signIn,
               {
-                borderColor: "#cc2b5e",
+                borderColor: "#087ee1",
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -246,7 +246,7 @@ const LoginScreen = ({ navigation }) => {
               style={[
                 styles.textSignIn,
                 {
-                  color: "#cc2b5e",
+                  color: "#087ee1",
                 },
               ]}
             >
