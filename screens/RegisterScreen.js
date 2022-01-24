@@ -20,8 +20,9 @@ import Animated, {
 
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "react-native-vector-icons";
-
 import { useTheme } from "react-native-paper";
+
+import SocialLogin from "../components/SocialLogin";
 
 const RegisterScreen = ({ navigation }) => {
   const [data, setData] = useState({
@@ -207,6 +208,13 @@ const RegisterScreen = ({ navigation }) => {
           </View>
         </ScrollView>
       </Animated.View>
+      <Animated.View
+        entering={BounceInRight.duration(2500)}
+        style={styles.footer}
+      >
+        <SocialLogin />
+      </Animated.View>
+      <View style={{ height: 30 }}></View>
     </LinearGradient>
   );
 };
@@ -216,21 +224,23 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#087ee1",
   },
   header: {
     flex: 1,
     justifyContent: "flex-end",
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingBottom: 40,
   },
   main: {
-    flex: Platform.OS === "ios" ? 3 : 5,
+    flex: Platform.OS === "ios" ? 4 : 6,
     backgroundColor: "#fff",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    borderRadius: 30,
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 20,
+  },
+  footer: {
+    flex: 1,
+    marginTop: 20,
   },
   textHeader: {
     color: "#fff",
