@@ -113,15 +113,7 @@ const LoginScreen = ({ navigation }) => {
       >
         <Text style={styles.textHeader}>Welcome!</Text>
       </Animated.View>
-      <Animated.View
-        entering={BounceInDown.duration(2500)}
-        style={[
-          styles.main,
-          {
-            backgroundColor: colors.background,
-          },
-        ]}
-      >
+      <Animated.View entering={BounceInDown.duration(2500)} style={styles.main}>
         <ScrollView>
           <Text
             style={[
@@ -272,7 +264,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingHorizontal: 20,
     paddingBottom: 50,
-    marginBottom: 10,
   },
   main: {
     flex: Platform.OS === "ios" ? 3 : 5,
