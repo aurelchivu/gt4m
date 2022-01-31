@@ -9,6 +9,7 @@ import {
   StatusBar,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import Animated, {
@@ -22,11 +23,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "react-native-vector-icons";
 import { useTheme } from "react-native-paper";
 
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import SocialLogin from "../components/SocialLogin";
 
 const RegisterScreen = ({ navigation }) => {
   const [data, setData] = useState({
-    username: "",
+    email: "",
     password: "",
     confirmPassword: "",
     checkTextInputChange: false,
@@ -38,13 +42,13 @@ const RegisterScreen = ({ navigation }) => {
     if (val.length >= 4) {
       setData({
         ...data,
-        username: val,
+        email: val,
         checkTextInputChange: true,
       });
     } else {
       setData({
         ...data,
-        username: val,
+        email: val,
         checkTextInputChange: false,
       });
     }
@@ -78,144 +82,161 @@ const RegisterScreen = ({ navigation }) => {
     });
   };
 
+  const register = () => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => console.log(userCredential.user))
+      .catch((error) => alert(error.message));
+  };
+
   return (
-    <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
-      <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
-      <Animated.View
-        style={styles.header}
-        entering={BounceInRight.duration(2500)}
-      >
-        <Text style={styles.textHeader}>Register Now!</Text>
-      </Animated.View>
-      <Animated.View entering={BounceInDown.duration(2500)} style={styles.main}>
-        <ScrollView>
-          <Text style={styles.textMain}>Email</Text>
-          <View style={styles.action}>
-            <FontAwesome name="user-o" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your Email"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(val) => textInputChange(val)}
-            />
-            {data.checkTextInputChange ? (
-              <Animated.View entering={BounceIn}>
-                <Feather name="check-circle" color="green" size={20} />
-              </Animated.View>
-            ) : (
-              <Animated.View entering={BounceIn}>
-                <Feather name="minus-circle" color="gray" size={20} />
-              </Animated.View>
-            )}
-          </View>
-
-          <Text
-            style={[
-              styles.textMain,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            Password
-          </Text>
-          <View style={styles.action}>
-            <Feather name="lock" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your Password"
-              secureTextEntry={data.secureTextEntry ? true : false}
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(val) => handlePasswordChange(val)}
-            />
-            <TouchableOpacity onPress={updateSecureTextEntry}>
-              {data.secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+    //   keyboardVerticalOffset={headerHeight}
+    //   style={{ flex: 1 }}
+    // >
+    <View style={{ flex: 1 }}>
+      <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
+        <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
+        <Animated.View
+          style={styles.header}
+          entering={BounceInRight.duration(2500)}
+        >
+          <Text style={styles.textHeader}>Register Now!</Text>
+        </Animated.View>
+        <Animated.View
+          entering={BounceInDown.duration(2500)}
+          style={styles.main}
+        >
+          <ScrollView style={{ flex: 1 }}>
+            <Text style={styles.textMain}>Email</Text>
+            <View style={styles.action}>
+              <FontAwesome name="user-o" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Email"
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(val) => textInputChange(val)}
+              />
+              {data.checkTextInputChange ? (
+                <Animated.View entering={BounceIn}>
+                  <Feather name="check-circle" color="green" size={20} />
+                </Animated.View>
               ) : (
-                <Feather name="eye" color="green" size={20} />
+                <Animated.View entering={BounceIn}>
+                  <Feather name="minus-circle" color="gray" size={20} />
+                </Animated.View>
               )}
-            </TouchableOpacity>
-          </View>
+            </View>
 
-          <Text
-            style={[
-              styles.textMain,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            Confirm Password
-          </Text>
-          <View style={styles.action}>
-            <Feather name="lock" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Confirm Your Password"
-              secureTextEntry={data.confirmSecureTextEntry ? true : false}
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(val) => handleConfirmPasswordChange(val)}
-            />
-            <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
-              {data.confirmSecureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="green" size={20} />
-              )}
-            </TouchableOpacity>
-          </View>
-          <View style={styles.button}>
-            <TouchableOpacity style={styles.signIn} onPress={() => {}}>
-              <LinearGradient
-                colors={["#087ee1", "#087ee1"]}
-                style={styles.signIn}
+            <Text
+              style={[
+                styles.textMain,
+                {
+                  marginTop: 35,
+                },
+              ]}
+            >
+              Password
+            </Text>
+            <View style={styles.action}>
+              <Feather name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Password"
+                secureTextEntry={data.secureTextEntry ? true : false}
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(val) => handlePasswordChange(val)}
+              />
+              <TouchableOpacity onPress={updateSecureTextEntry}>
+                {data.secureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="green" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+
+            <Text
+              style={[
+                styles.textMain,
+                {
+                  marginTop: 35,
+                },
+              ]}
+            >
+              Confirm Password
+            </Text>
+            <View style={styles.action}>
+              <Feather name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Confirm Your Password"
+                secureTextEntry={data.confirmSecureTextEntry ? true : false}
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(val) => handleConfirmPasswordChange(val)}
+              />
+              <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
+                {data.confirmSecureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="green" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+            <View style={styles.button}>
+              <TouchableOpacity style={styles.signIn} onPress={register}>
+                <LinearGradient
+                  colors={["#087ee1", "#087ee1"]}
+                  style={styles.signIn}
+                >
+                  <Text
+                    style={[
+                      styles.textSign,
+                      {
+                        color: "#fff",
+                      },
+                    ]}
+                  >
+                    Register
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Login")}
+                style={[
+                  styles.signIn,
+                  {
+                    borderColor: "#087ee1",
+                    borderWidth: 1,
+                    marginTop: 15,
+                  },
+                ]}
               >
                 <Text
                   style={[
                     styles.textSign,
                     {
-                      color: "#fff",
+                      color: "#087ee1",
                     },
                   ]}
                 >
-                  Register
+                  Login
                 </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Login")}
-              style={[
-                styles.signIn,
-                {
-                  borderColor: "#087ee1",
-                  borderWidth: 1,
-                  marginTop: 15,
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: "#087ee1",
-                  },
-                ]}
-              >
-                Login
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </Animated.View>
-      <Animated.View
-        entering={BounceInRight.duration(2500)}
-        style={styles.footer}
-      >
-        <SocialLogin />
-      </Animated.View>
-      <View style={{ height: 30 }}></View>
-    </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </Animated.View>
+        <Animated.View
+          entering={BounceInRight.duration(2500)}
+          style={styles.footer}
+        >
+          <SocialLogin />
+        </Animated.View>
+        <View style={{ height: 60 }}></View>
+      </LinearGradient>
+    </View>
+    // </KeyboardAvoidingView>
   );
 };
 
