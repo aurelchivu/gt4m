@@ -3,13 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import DrawerNavigator from "./navigation/DrawerNavigator";
 import AuthNavigator from "./navigation/AuthNavigator";
+import Routes from "./navigation";
 
-function App() {
-  return (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
-  );
-}
+const App = () => {
+  return <Routes />;
+};
 
 export default App;

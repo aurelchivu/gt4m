@@ -23,7 +23,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "react-native-vector-icons";
 import { useTheme } from "react-native-paper";
 
-import { auth } from "../firebase";
+import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import SocialLogin from "../components/SocialLogin";

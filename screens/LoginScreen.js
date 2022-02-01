@@ -19,7 +19,7 @@ import Animated, {
   FadeInLeft,
 } from "react-native-reanimated";
 
-import { auth } from "../firebase";
+import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { LinearGradient } from "expo-linear-gradient";
