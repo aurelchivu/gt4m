@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   main: {
-    flex: Platform.OS === "ios" ? 4 : 6,
+    flex: Platform.OS === "ios" ? 4 : 7,
     backgroundColor: "#fff",
     borderRadius: 30,
     paddingHorizontal: 20,

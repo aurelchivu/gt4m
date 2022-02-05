@@ -18,12 +18,16 @@ export default {
     assetBundlePatterns: ["**/*"],
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.gt4m.gt4m",
+      buildNumber: "1.0.0",
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#FFFFFF",
       },
+      package: "com.gt4m.gt4m",
+      versionCode: 1,
     },
     web: {
       favicon: "./assets/favicon.png",
@@ -35,6 +39,7 @@ export default {
       storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
       messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
       appId: process.env.FIREBASE_APP_ID,
+      facebookAppId: process.env.FACEBOOK_APP_ID,
     },
   },
 };

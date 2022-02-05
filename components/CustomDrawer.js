@@ -13,7 +13,7 @@ const CustomDrawer = (props) => {
   const signout = () => {
     signOut(auth)
       .then(() => {
-        props.navigate("WelcomeScreen");
+        console.log("Signed out");
       })
       .catch((error) => {
         console.log(error.message);
