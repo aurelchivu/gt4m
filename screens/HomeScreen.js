@@ -1,14 +1,17 @@
-import React from "react";
-import { Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { AuthenticatedUserContext } from "../auth/AuthenticatedUserProvider";
 
 const HomeScreen = ({ navigation }) => {
+  const { user } = useContext(AuthenticatedUserContext);
+  console.log(user);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
         <MaterialCommunityIcons name="home" size={26} />
       </TouchableOpacity>
-      <Text>Home Screen</Text>
+      <Text>{user.displayName}</Text>
     </View>
   );
 };

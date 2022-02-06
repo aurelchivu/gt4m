@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const WorkoutsScreen = ({ navigation }) => {
+const WorkoutsScreen = ({ navigation, user }) => {
   return (
     <View style={styles.container}>
-      <Text>Workouts Screen</Text>
+      <Text>{user}</Text>
     </View>
   );
 };

@@ -33,18 +33,20 @@ const RootNavigator = () => {
     return unsubscribeAuth;
   }, []);
 
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
   return (
-    <NavigationContainer>
-      {user ? <DrawerNavigator /> : <AuthNavigator />}
-    </NavigationContainer>
+    <>
+      {isLoading ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+        <NavigationContainer>
+          {user ? <DrawerNavigator user={user} /> : <AuthNavigator />}
+        </NavigationContainer>
+      )}
+    </>
   );
 };
 

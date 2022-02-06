@@ -27,15 +27,22 @@ const FacebookLogin = () => {
     try {
       const appId = Constants.manifest.extra.facebookAppId;
       const appName = "gt4m";
-      let options = null;
-      if (Platform.OS === "android") {
-        options = { appId };
-      } else {
-        options = {
-          appId,
-          appName,
-        };
-      }
+      const options =
+        Platform.OS === "android"
+          ? { appId }
+          : {
+              appId,
+              appName,
+            };
+      // let options = null;
+      // if (Platform.OS === "android") {
+      //   options = { appId };
+      // } else {
+      //   options = {
+      //     appId,
+      //     appName,
+      //   };
+      // }
       await Facebook.initializeAsync(options);
 
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
@@ -52,7 +59,7 @@ const FacebookLogin = () => {
           auth,
           credential
         );
-        console.log(facebookProfileData);
+        // console.log(facebookProfileData);
       }
     } catch (error) {
       console.log(error);
