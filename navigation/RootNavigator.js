@@ -31,7 +31,7 @@ const RootNavigator = () => {
 
     // unsubscribe auth listener on unmount
     return unsubscribeAuth;
-  }, []);
+  }, [user]);
 
   return (
     <>

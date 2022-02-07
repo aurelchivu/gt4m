@@ -24,12 +24,13 @@ import { FontAwesome, Feather } from "react-native-vector-icons";
 import { useTheme } from "react-native-paper";
 
 import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import SocialLogin from "../components/SocialLogin";
 
 const RegisterScreen = ({ navigation }) => {
   const [data, setData] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -38,7 +39,23 @@ const RegisterScreen = ({ navigation }) => {
     confirmSecureTextEntry: true,
   });
 
-  const textInputChange = (val) => {
+  const handleUsernameChange = (val) => {
+    if (val.length >= 4) {
+      setData({
+        ...data,
+        username: val,
+        checkTextInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        username: val,
+        checkTextInputChange: false,
+      });
+    }
+  };
+
+  const handleEmailChange = (val) => {
     if (val.length >= 4) {
       setData({
         ...data,
@@ -82,10 +99,23 @@ const RegisterScreen = ({ navigation }) => {
     });
   };
 
-  const register = () => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => console.log(userCredential.user))
-      .catch((error) => alert(error.message));
+  const register = async () => {
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+
+      await updateProfile(auth.currentUser, {
+        displayName: data.username,
+      });
+
+      // console.log(user);
+    } catch (error) {
+      alert(error.message);
+      console.log(error.message);
+    }
   };
 
   return (
@@ -108,14 +138,14 @@ const RegisterScreen = ({ navigation }) => {
           style={styles.main}
         >
           <ScrollView style={{ flex: 1 }}>
-            <Text style={styles.textMain}>Email</Text>
+            <Text style={styles.textMain}>Username</Text>
             <View style={styles.action}>
               <FontAwesome name="user-o" color="#05375a" size={20} />
               <TextInput
-                placeholder="Your Email"
+                placeholder="Choose an username"
                 style={styles.textInput}
                 autoCapitalize="none"
-                onChangeText={(val) => textInputChange(val)}
+                onChangeText={(val) => handleUsernameChange(val)}
               />
               {data.checkTextInputChange ? (
                 <Animated.View entering={BounceIn}>
@@ -127,7 +157,25 @@ const RegisterScreen = ({ navigation }) => {
                 </Animated.View>
               )}
             </View>
-
+            <Text style={styles.textMain}>Email</Text>
+            <View style={styles.action}>
+              <FontAwesome name="user-o" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Email"
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(val) => handleEmailChange(val)}
+              />
+              {data.checkTextInputChange ? (
+                <Animated.View entering={BounceIn}>
+                  <Feather name="check-circle" color="green" size={20} />
+                </Animated.View>
+              ) : (
+                <Animated.View entering={BounceIn}>
+                  <Feather name="minus-circle" color="gray" size={20} />
+                </Animated.View>
+              )}
+            </View>
             <Text
               style={[
                 styles.textMain,

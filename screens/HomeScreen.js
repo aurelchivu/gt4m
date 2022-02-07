@@ -5,13 +5,13 @@ import { AuthenticatedUserContext } from "../auth/AuthenticatedUserProvider";
 
 const HomeScreen = ({ navigation }) => {
   const { user } = useContext(AuthenticatedUserContext);
-  console.log(user);
+  // console.log(user);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
         <MaterialCommunityIcons name="home" size={26} />
       </TouchableOpacity>
-      <Text>{user.displayName}</Text>
+      <Text>{user.displayName ? user.displayName : "New User"}</Text>
     </View>
   );
 };
