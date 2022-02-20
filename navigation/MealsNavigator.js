@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MealsScreen from "../screens/MealsScreen";
 
+import color from "../config/color";
+
 const Stack = createNativeStackNavigator();
 
 const MealsNavigator = ({ navigation }) => {
@@ -12,7 +14,7 @@ const MealsNavigator = ({ navigation }) => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#1f65ff",
+            backgroundColor: color.primary,
           },
         }}
       >
@@ -22,13 +24,13 @@ const MealsNavigator = ({ navigation }) => {
           options={{
             title: "Meals",
             headerStyle: {
-              backgroundColor: "#1f65ff",
+              backgroundColor: color.primary,
             },
             headerLeft: () => (
               <MaterialCommunityIcons.Button
                 name="menu"
                 size={25}
-                backgroundColor="#1f65ff"
+                backgroundColor={color.primary}
                 onPress={() => navigation.openDrawer()}
               ></MaterialCommunityIcons.Button>
             ),

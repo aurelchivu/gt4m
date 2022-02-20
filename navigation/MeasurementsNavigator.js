@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+import color from "../config/color";
+
 import MeasurementsScreen from "../screens/MeasurementsScreen";
 
 const Stack = createNativeStackNavigator();
@@ -13,7 +15,7 @@ const MeasurementsNavigator = ({ navigation }) => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#694fad",
+            backgroundColor: color.primary,
           },
         }}
       >
@@ -23,13 +25,13 @@ const MeasurementsNavigator = ({ navigation }) => {
           options={{
             title: "Measurements",
             headerStyle: {
-              backgroundColor: "#694fad",
+              backgroundColor: color.primary,
             },
             headerLeft: () => (
               <MaterialCommunityIcons.Button
                 name="menu"
                 size={25}
-                backgroundColor="#694fad"
+                backgroundColor={color.primary}
                 onPress={() => navigation.openDrawer()}
               ></MaterialCommunityIcons.Button>
             ),

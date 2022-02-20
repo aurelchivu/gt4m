@@ -9,12 +9,14 @@ import MeasurementsNavigator from "./MeasurementsNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
+import color from "../config/color";
+
 const BottomNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#fff"
-      barStyle={{ backgroundColor: "tomato" }}
+      barStyle={{ backgroundColor: color.secondary }}
       screenOptions={{
         tabBarOptions: {
           scrollEnabled: true,
@@ -26,12 +28,12 @@ const BottomNavigator = () => {
         component={HomeNavigator}
         options={{
           tabBarLabel: "Home",
-          tabBarColor: "#f4511e",
+          tabBarColor: color.secondary,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
           headerStyle: {
-            backgroundColor: "#009387",
+            backgroundColor: color.secondary,
           },
         }}
       />
@@ -40,7 +42,7 @@ const BottomNavigator = () => {
         component={WorkoutsNavigator}
         options={{
           tabBarLabel: "Workouts",
-          tabBarColor: "#009387",
+          tabBarColor: color.secondary,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="weight-lifter"
@@ -55,10 +57,10 @@ const BottomNavigator = () => {
         component={MealsNavigator}
         options={{
           headerStyle: {
-            backgroundColor: "#009387",
+            backgroundColor: color.secondary,
           },
           tabBarLabel: "Meals",
-          tabBarColor: "#1f65ff",
+          tabBarColor: color.secondary,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="food-fork-drink"
@@ -73,7 +75,7 @@ const BottomNavigator = () => {
         component={MeasurementsNavigator}
         options={{
           tabBarLabel: "Measurements",
-          tabBarColor: "#694fad",
+          tabBarColor: color.secondary,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="tape-measure"

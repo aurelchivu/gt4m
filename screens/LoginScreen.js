@@ -28,6 +28,8 @@ import { useTheme } from "react-native-paper";
 
 import SocialLogin from "../components/SocialLogin";
 
+import color from "../config/color";
+
 const LoginScreen = ({ navigation }) => {
   const [data, setData] = useState({
     email: "",
@@ -115,9 +117,13 @@ const LoginScreen = ({ navigation }) => {
     //   keyboardVerticalOffset={headerHeight}
     //   style={{ flex: 1 }}
     // >
+
     <View style={{ flex: 1 }}>
-      <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
-        <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
+      <LinearGradient
+        style={styles.container}
+        colors={[color.primary, color.secondary]}
+      >
+        <StatusBar backgroundColor={color.primary} barStyle="light-content" />
 
         <Animated.View
           style={styles.header}
@@ -204,7 +210,7 @@ const LoginScreen = ({ navigation }) => {
               </Animated.View>
             )}
             <TouchableOpacity>
-              <Text style={{ color: "#087ee1", marginTop: 15 }}>
+              <Text style={{ color: color.primary, marginTop: 15 }}>
                 Forgot password?
               </Text>
             </TouchableOpacity>
@@ -216,7 +222,7 @@ const LoginScreen = ({ navigation }) => {
                 }}
               >
                 <LinearGradient
-                  colors={["#087ee1", "#087ee1"]}
+                  colors={[color.primary, color.primary]}
                   style={styles.signIn}
                 >
                   <Text
@@ -237,7 +243,7 @@ const LoginScreen = ({ navigation }) => {
                 style={[
                   styles.signIn,
                   {
-                    borderColor: "#087ee1",
+                    borderColor: color.primary,
                     borderWidth: 1,
                     marginTop: 15,
                   },
@@ -247,7 +253,7 @@ const LoginScreen = ({ navigation }) => {
                   style={[
                     styles.textSignIn,
                     {
-                      color: "#087ee1",
+                      color: color.primary,
                     },
                   ]}
                 >
@@ -266,6 +272,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={{ height: 60 }}></View>
       </LinearGradient>
     </View>
+
     // </KeyboardAvoidingView>
   );
 };

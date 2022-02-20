@@ -9,6 +9,8 @@ import WorkoutsNavigator from "./WorkoutsNavigator";
 import MealsNavigator from "./MealsNavigator";
 import MeasurementsNavigator from "./MeasurementsNavigator";
 
+import color from "../config/color";
+
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -30,9 +32,9 @@ const DrawerNavigator = () => {
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
           headerStyle: {
-            backgroundColor: "#f4511e",
+            backgroundColor: color.secondary,
           },
-          drawerActiveBackgroundColor: "#f4511e",
+          drawerActiveBackgroundColor: color.primary,
         }}
       />
       <Drawer.Screen
@@ -47,9 +49,9 @@ const DrawerNavigator = () => {
             />
           ),
           headerStyle: {
-            backgroundColor: "#009387",
+            backgroundColor: color.secondary,
           },
-          drawerActiveBackgroundColor: "#009387",
+          drawerActiveBackgroundColor: color.primary,
         }}
       />
       <Drawer.Screen
@@ -64,9 +66,9 @@ const DrawerNavigator = () => {
             />
           ),
           headerStyle: {
-            backgroundColor: "#1f65ff",
+            backgroundColor: color.secondary,
           },
-          drawerActiveBackgroundColor: "#1f65ff",
+          drawerActiveBackgroundColor: color.primary,
         }}
       />
       <Drawer.Screen
@@ -81,9 +83,9 @@ const DrawerNavigator = () => {
             />
           ),
           headerStyle: {
-            backgroundColor: "#694fad",
+            backgroundColor: color.secondary,
           },
-          drawerActiveBackgroundColor: "#694fad",
+          drawerActiveBackgroundColor: color.primary,
         }}
       />
     </Drawer.Navigator>

@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+import color from "../config/color";
+
 import WorkoutsScreen from "../screens/WorkoutsScreen";
 
 const Stack = createNativeStackNavigator();
@@ -13,7 +15,7 @@ const WorkoutsNavigator = ({ navigation }) => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#009387",
+            backgroundColor: color.primary,
           },
         }}
       >
@@ -23,13 +25,13 @@ const WorkoutsNavigator = ({ navigation }) => {
           options={{
             title: "Workouts",
             headerStyle: {
-              backgroundColor: "#009387",
+              backgroundColor: color.primary,
             },
             headerLeft: () => (
               <MaterialCommunityIcons.Button
                 name="menu"
                 size={25}
-                backgroundColor="#009387"
+                backgroundColor={color.primary}
                 onPress={() => navigation.openDrawer()}
               ></MaterialCommunityIcons.Button>
             ),

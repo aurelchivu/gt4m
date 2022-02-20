@@ -18,14 +18,19 @@ import Animated, {
   FadeInLeft,
 } from "react-native-reanimated";
 
+import color from "../config/color";
+
 import { useTheme } from "react-native-paper";
 
 const WelcomeScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
-      <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
+    <LinearGradient
+      style={styles.container}
+      colors={[color.primary, color.secondary]}
+    >
+      <StatusBar backgroundColor={color.primary} barStyle="light-content" />
       <View style={styles.header}></View>
       <Animated.View
         style={[
@@ -40,7 +45,7 @@ const WelcomeScreen = ({ navigation }) => {
         <View style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <LinearGradient
-              colors={["#087ee1", "#087ee1"]}
+              colors={[color.primary, color.primary]}
               style={styles.signIn}
             >
               <Text style={styles.textSign}>Get Started</Text>
@@ -115,8 +120,8 @@ background-color: #feae96;
 background-image: linear-gradient(315deg, #feae96 0%, #fe0944 74%);
 
 
-background-color: #05e8ba;
-background-image: linear-gradient(315deg, #05e8ba 0%, #087ee1 74%);
+background-color: color.secondary;
+background-image: linear-gradient(315deg, color.secondary 0%, color.primary 74%);
 
 
 background-color: #d3d3d3;

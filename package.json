@@ -19,7 +19,7 @@
     "expo": "~44.0.0",
     "expo-constants": "~13.0.1",
     "expo-facebook": "~12.1.0",
-    "expo-linear-gradient": "~11.0.1",
+    "expo-linear-gradient": "~11.0.3",
     "expo-status-bar": "~1.2.0",
     "firebase": "^9.6.5",
     "lodash": "^4.17.21",

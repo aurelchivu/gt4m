@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View, ActivityIndicator } from "react-native";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config/firebase";
 
 import { AuthenticatedUserContext } from "../auth/AuthenticatedUserProvider";
 import AuthNavigator from "./AuthNavigator";
@@ -11,7 +12,6 @@ import DrawerNavigator from "./DrawerNavigator";
 const RootNavigator = () => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const [isLoading, setIsLoading] = useState(true);
-  const auth = getAuth();
 
   useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
@@ -31,7 +31,7 @@ const RootNavigator = () => {
 
     // unsubscribe auth listener on unmount
     return unsubscribeAuth;
-  }, [user]);
+  }, []);
 
   return (
     <>

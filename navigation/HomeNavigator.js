@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeScreen from "../screens/HomeScreen";
 
+import color from "../config/color";
+
 const Stack = createNativeStackNavigator();
 
 const HomeNavigator = ({ navigation }) => {
@@ -12,7 +14,7 @@ const HomeNavigator = ({ navigation }) => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#f4511e",
+            backgroundColor: color.primary,
           },
         }}
       >
@@ -22,13 +24,13 @@ const HomeNavigator = ({ navigation }) => {
           options={{
             title: "Home",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: color.primary,
             },
             headerLeft: () => (
               <MaterialCommunityIcons.Button
                 name="menu"
                 size={25}
-                backgroundColor="#f4511e"
+                backgroundColor={color.primary}
                 onPress={() => navigation.openDrawer()}
               ></MaterialCommunityIcons.Button>
             ),

@@ -1,11 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import color from "../config/color";
 
 const WorkoutsScreen = ({ navigation, user }) => {
   return (
-    <View style={styles.container}>
-      <Text>{user}</Text>
-    </View>
+    <LinearGradient
+      style={styles.container}
+      colors={[color.primary, color.secondary]}
+    >
+      <View style={styles.container}>
+        <Text>Workouts Screen</Text>
+      </View>
+    </LinearGradient>
   );
 };
 

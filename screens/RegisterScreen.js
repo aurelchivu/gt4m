@@ -26,6 +26,8 @@ import { useTheme } from "react-native-paper";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
+import color from "../config/color";
+
 import SocialLogin from "../components/SocialLogin";
 
 const RegisterScreen = ({ navigation }) => {
@@ -125,8 +127,11 @@ const RegisterScreen = ({ navigation }) => {
     //   style={{ flex: 1 }}
     // >
     <View style={{ flex: 1 }}>
-      <LinearGradient style={styles.container} colors={["#087ee1", "#05e8ba"]}>
-        <StatusBar backgroundColor="#087ee1" barStyle="light-content" />
+      <LinearGradient
+        style={styles.container}
+        colors={[color.primary, color.secondary]}
+      >
+        <StatusBar backgroundColor={color.primary} barStyle="light-content" />
         <Animated.View
           style={styles.header}
           entering={BounceInRight.duration(2500)}
@@ -234,7 +239,7 @@ const RegisterScreen = ({ navigation }) => {
             <View style={styles.button}>
               <TouchableOpacity style={styles.signIn} onPress={register}>
                 <LinearGradient
-                  colors={["#087ee1", "#087ee1"]}
+                  colors={[color.primary, color.primary]}
                   style={styles.signIn}
                 >
                   <Text
@@ -255,7 +260,7 @@ const RegisterScreen = ({ navigation }) => {
                 style={[
                   styles.signIn,
                   {
-                    borderColor: "#087ee1",
+                    borderColor: color.primary,
                     borderWidth: 1,
                     marginTop: 15,
                   },
@@ -265,7 +270,7 @@ const RegisterScreen = ({ navigation }) => {
                   style={[
                     styles.textSign,
                     {
-                      color: "#087ee1",
+                      color: color.primary,
                     },
                   ]}
                 >
